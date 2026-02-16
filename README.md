@@ -1,77 +1,174 @@
-📊 Data Report Automation (Python)
+# 📊 Data Report Automation (Python) — v1.0
 
-Automação de geração de relatórios a partir de arquivos CSV contendo dados de vendas.
+Automação completa de geração de relatórios de vendas a partir de arquivos CSV.
 
-O projeto lê os dados, calcula métricas de negócio e gera automaticamente um relatório estruturado em Excel.
+O projeto realiza validação, limpeza, transformação, cálculo de métricas e geração automática de múltiplos artefatos (Excel, relatório textual, gráficos e logs).
 
-🎯 Objetivo
+---
 
-Demonstrar habilidades em:
+## 🎯 Objetivo
 
-Manipulação e transformação de dados com Python
+Demonstrar competências profissionais em:
 
-Processamento de arquivos CSV
+* Manipulação e transformação de dados com Python
+* Validação e tratamento de dados inconsistentes
+* Cálculo de métricas de negócio
+* Automação de relatórios
+* Estruturação de projeto com CLI e logging
+* Geração de múltiplos outputs profissionais
 
-Cálculo de métricas de negócio
+Este projeto simula um pipeline de dados real de pequeno porte (ETL simplificado).
 
-Geração automatizada de relatórios
+---
 
-Organização de projeto com estrutura profissional
+## 🧠 O que o sistema faz
 
-🧩 Funcionalidades (v0.1)
+### 1️⃣ Leitura e Validação
 
-Leitura de arquivo CSV com dados de vendas
+* Verifica colunas obrigatórias:
 
-Cálculo automático das principais métricas:
+  * `date`, `product`, `category`, `quantity`, `price`
+* Converte tipos de dados
+* Remove linhas inválidas
+* Aplica regras de negócio (quantidade > 0, preço ≥ 0)
+* Registra logs da execução
 
-Faturamento total
+---
 
-Ticket médio
+### 2️⃣ Transformação e Métricas
 
-Maior venda
+Calcula automaticamente:
 
-Menor venda
+* Faturamento total
+* Total de unidades vendidas
+* Ticket médio
+* Produto com maior faturamento
+* Categoria com maior faturamento
+* Melhor dia de vendas
+* Pior dia de vendas
+* Maior e menor venda individual
 
-Cálculo de faturamento por categoria
+Também gera agregações:
 
-Geração automática de relatório em Excel (.xlsx) contendo:
+* Receita por categoria
+* Receita por produto
+* Receita diária
 
-Aba com dados tratados
+---
 
-Aba com faturamento por categoria
+### 3️⃣ Geração de Artefatos
 
-Aba resumo com métricas principais
+A cada execução, o sistema gera arquivos versionados por timestamp:
 
-🗂 Estrutura do projeto
+📁 `reports/`
+
+* `sales_report_<run_id>.xlsx`
+
+  * summary
+  * data_quality
+  * data
+  * revenue_by_category
+  * revenue_by_product
+  * daily_revenue
+
+* `sales_report_<run_id>.txt`
+
+  * Resumo executivo formatado
+
+* `chart_revenue_by_category_<run_id>.png`
+
+* `chart_daily_revenue_<run_id>.png`
+
+* `run_<run_id>.log`
+
+  * Log detalhado da execução
+
+---
+
+## 🗂 Estrutura do Projeto
+
+```
 data-report-automation-python/
 │
-├─ data/        # Arquivos CSV de entrada
-├─ reports/     # Relatórios gerados automaticamente
-├─ main.py      # Script principal
+├─ data/          # Arquivos CSV de entrada
+├─ reports/       # Relatórios gerados automaticamente
+├─ main.py        # Script principal
+├─ .gitignore
 └─ README.md
+```
 
-🚀 Próximas versões
+---
 
-v0.2: Validação e tratamento de erros (dados ausentes, formatos inválidos)
+## ▶️ Como Executar
 
-v0.3: Geração automática de gráficos
+### Instale as dependências
 
-v0.4: Filtros por período (ex: mês, trimestre)
+```bash
+pip install pandas openpyxl matplotlib
+```
 
-v1.0: Envio automático do relatório por e-mail
+---
 
-▶️ Como executar
+### Execução padrão
 
-Coloque o arquivo CSV dentro da pasta data/
-
-Execute:
-
+```bash
 python main.py
+```
 
+---
 
-O relatório será gerado automaticamente na pasta reports/ 
+### Execução avançada
 
-## 👤 Autor
+```bash
+python main.py --csv data/sales.csv --out reports --verbose
+```
 
-Daniel de Melo Martins  
-Projeto de estudo e portfólio em Python para automação de dados.
+### Parâmetros disponíveis
+
+| Parâmetro       | Descrição                                 |
+| --------------- | ----------------------------------------- |
+| `--csv`         | Caminho do CSV de entrada                 |
+| `--out`         | Pasta de saída dos relatórios             |
+| `--run-id`      | Identificador manual da execução          |
+| `--date-format` | Formato específico da data (ex: %Y-%m-%d) |
+| `--no-charts`   | Desativa geração de gráficos              |
+| `--verbose`     | Exibe logs no console                     |
+
+---
+
+## 🛡 Robustez do Sistema
+
+* Tratamento de exceções
+* Logging estruturado
+* Validação de esquema de dados
+* Proteção contra divisão por zero
+* Versionamento automático de execução
+* Organização limpa e modular
+
+---
+
+## 🚀 Diferenciais Técnicos
+
+✔ Estrutura orientada a produção
+✔ CLI profissional com argparse
+✔ Uso de dataclasses
+✔ Logging estruturado
+✔ Exportação multi-formato
+✔ Separação clara de responsabilidades
+✔ Código pronto para escalar
+
+---
+
+## 📈 Possíveis Evoluções Futuras
+
+* Integração com banco de dados (SQL Server / PostgreSQL)
+* API REST para disparar relatórios
+* Containerização com Docker
+* Testes automatizados (pytest)
+* Deploy em ambiente cloud
+
+---
+
+## 📌 Sobre
+
+Projeto desenvolvido para demonstrar domínio prático de Python aplicado a dados e automação de relatórios empresariais.
