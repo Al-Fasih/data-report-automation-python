@@ -1,3 +1,5 @@
+EM CONSTRUÇÃO v.0.1
+
 # Data Report Automation (Python)
 
 Automação de geração de relatórios a partir de arquivos CSV contendo dados empresariais.  
